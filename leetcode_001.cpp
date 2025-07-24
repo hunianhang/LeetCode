@@ -27,17 +27,15 @@ public:
 		unordered_map<int, int> hashMap;
 		for (int i = 0; i < nums.size(); i++)
 		{
-			for (int i = 0; i < nums.size(); i++)
+
+			int complement = target - nums[i];
+			if (hashMap.find(complement) != hashMap.end())
 			{
-				int complement = target - nums[i];
-				if (hashMap.find(complement) != hashMap.end())
-				{
-					return { hashMap[complement],i };
-				}
-				hashMap[nums[i]] = i;
+				return { hashMap[complement],i };
 			}
-			return {};
+			hashMap[nums[i]] = i;
 		}
+		return {};
 	}
 };
 
