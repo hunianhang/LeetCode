@@ -1,0 +1,24 @@
+class Solution:
+    def convert(self, s:str, numRows:int) -> str:
+        if numRows == 1 or numRows >= len(s):
+            return s
+
+        rows = [''] * numRows
+        cur_row = 0
+        going_down = False
+
+        for c in s:
+            rows[cur_row] += c
+
+            if cur_row == 0 or cur_row == numRows - 1:
+                going_down = not going_down
+
+            cur_row += 1 if going_down else -1
+
+        return ''.join(rows)
+
+if __name__ == "__main__":
+    sol = Solution()
+    s = "PAYPALISHIRING"
+    print(sol.convert(s, 3))  # 输出 / Output: PAHNAPLSIIGYIR
+    print(sol.convert(s, 4))  # 输出 / Output: PINALSIGYAHRPI
